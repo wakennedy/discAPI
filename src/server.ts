@@ -3,6 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import logging from './config/logging';
 import config from './config/config';
+import sampleRoutes from './routes/sample';
 
 const NAMESPACE = 'Server';
 const router = express();
@@ -14,6 +15,8 @@ router.use((req, res, next) => {
     res.on('finish', () => {
         logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP - [${req.socket.remoteAddress}], STATUS - [${res.statusCode}]`);
     });
+
+    next();
 });
 
 /** Parse the Request */
@@ -34,6 +37,7 @@ router.use((req, res, next) => {
 });
 
 /** Routes go here */
+router.use('/api/sample', sampleRoutes);
 
 /** Error handling */
 router.use((req, res, next) => {
