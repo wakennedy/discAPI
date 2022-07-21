@@ -1,1 +1,1 @@
-console.log("hello2 from typescript!")
+console.log('hello2 from typescript!');
